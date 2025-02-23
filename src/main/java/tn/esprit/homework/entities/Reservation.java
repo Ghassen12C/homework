@@ -1,11 +1,7 @@
 package tn.esprit.homework.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
@@ -21,6 +17,11 @@ public class Reservation {
     private Date anneeUniversitaire;
     private Boolean estValide;
 
-    private Long etudiantId; // Instead of @ManyToOne association
-    private Long chambreId;
+    @ManyToOne
+    @JoinColumn(name = "etudiant_id")
+    private Etudiant etudiant;
+
+    @ManyToOne
+    @JoinColumn(name = "chambre_id")
+    private Chambre chambre;
 }

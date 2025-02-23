@@ -1,13 +1,9 @@
 package tn.esprit.homework.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -22,5 +18,10 @@ public class Foyer {
     private String nomFoyer;
     private Long capaciteFoyer;
 
-    private Long universiteId;
+    @OneToOne
+    @JoinColumn(name = "universite_id")
+    private Universite universite;
+
+    @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Bloc> blocs;
 }
