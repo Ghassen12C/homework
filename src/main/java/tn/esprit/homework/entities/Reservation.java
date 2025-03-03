@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -12,16 +13,15 @@ import java.util.Date;
 @Setter
 public class Reservation {
     @Id
-    private String idReservation;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idReservation;
     private Date anneeUniversitaire;
-    private Boolean estValide;
+    private boolean estValide;
 
-    @ManyToOne
-    @JoinColumn(name = "etudiant_id")
-    private Etudiant etudiant;
+    @ManyToMany
+    private Set<Etudiant> etudiants;
 
-    @ManyToOne
-    @JoinColumn(name = "chambre_id")
-    private Chambre chambre;
+    public Long getIdReservation() {
+        return idReservation;
+    }
 }

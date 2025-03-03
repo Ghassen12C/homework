@@ -14,14 +14,16 @@ public class Foyer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFoyer;
-
     private String nomFoyer;
     private Long capaciteFoyer;
 
     @OneToOne
-    @JoinColumn(name = "universite_id")
     private Universite universite;
 
-    @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Bloc> blocs;
+    @OneToMany(mappedBy = "foyer")
+    private List<Bloc> blocs ;
+
+    public Long getIdFoyer() {
+        return idFoyer;
+    }
 }

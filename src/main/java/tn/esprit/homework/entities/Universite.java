@@ -12,10 +12,13 @@ public class Universite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUniversite;
-
     private String nomUniversite;
     private String adresse;
 
-    @OneToOne(mappedBy = "universite", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "universite")
     private Foyer foyer;
+
+    public Long getIdUniversite() {
+        return idUniversite;
+    }
 }
