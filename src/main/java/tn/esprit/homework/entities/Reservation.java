@@ -17,6 +17,8 @@ public class Reservation {
     private Long idReservation;
     private Date anneeUniversitaire;
     private boolean estValide;
+    @ManyToOne
+    private Chambre chambre;
 
     @ManyToMany
     private Set<Etudiant> etudiants;
